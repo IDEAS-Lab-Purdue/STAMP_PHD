@@ -1,8 +1,11 @@
-# STAMP - Spatio-Temporal Attention network for Monitoring Persistently
+# Fork of STAMP 
 
-This repository hosts the code for paper [Spatio-Temporal Attention Network for Persistent Monitoring of Multiple Mobile Targets](https://arxiv.org/abs/2303.06350), accepted for presentation at IROS 2023.
+## Files
+- `phd_filter.py`: PHD Filter (wrapper) for belief augmentation 
+- `phd_env.py`: Variant of `env.py` to use the updated PHD Filter, instead of the Gaussian Process as the persistent monitoring environment
 
-## Run
+
+## From STAMP , Gaussian Process (GP)
 
 ### Requirements
 ```bash
@@ -17,11 +20,11 @@ imageio
 tensorboard
 ```
 
-### Training
+### Training (GP)
 1. Set appropriate parameters in `arguments.py -> Arguments`.
 2. Run `python driver.py`.
 
-### Evaluation
+### Evaluation (GP)
 1. Set appropriate parameters in `arguments.py -> ArgumentsEval`.
 2. Run `python /evals/eval_driver.py`.
 
@@ -37,32 +40,3 @@ tensorboard
 - `/utils/*`: Utility files for graph, target motion, and TSP.
 - `/model/*`: Trained model.
 
-### Demo
-
-<img src="utils/media/demo.gif" alt="demo" style="width: 70%;">
-
-<div>
-    <h3><a href="https://youtu.be/q1wQup70m6c">Watch AirSim Video</a></h3>
-    <a href="https://youtu.be/q1wQup70m6c">
-        <img src="https://img.youtube.com/vi/q1wQup70m6c/maxresdefault.jpg" alt="Watch the video" style="width: 70%;">
-    </a>
-</div>
-
-
-
-
-## Cite
-
-```bibtex
-@inproceedings{wang2023spatio,
-  title={Spatio-Temporal Attention Network for Persistent Monitoring of Multiple Mobile Targets},
-  author={Wang, Yizhuo and Wang, Yutong and Cao, Yuhong and Sartoretti, Guillaume},
-  booktitle={2023 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
-  year={2023}
-}
-```
-Authors:
-[Yizhuo Wang](https://github.com/wyzh98),
-[Yutong Wang](https://github.com/wyt2019suzhou),
-[Yuhong Cao](https://github.com/caoyuhong001),
-[Guillaume Sartoretti](https://github.com/gsartoretti)
