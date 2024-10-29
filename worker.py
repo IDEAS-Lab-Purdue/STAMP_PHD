@@ -221,7 +221,7 @@ class Worker:
 
 
 if __name__ == '__main__':
-    save_img = False
+    save_img = True
     if save_img:
         if not os.path.exists(arg.gifs_path):
             os.makedirs(arg.gifs_path)

@@ -1,5 +1,13 @@
 import copy
+import sys
 import os
+
+# Get the parent directory
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Add the parent directory to sys.path
+sys.path.insert(0, parent_dir)
+
+
 import imageio
 import numpy as np
 import time
@@ -166,13 +174,13 @@ class WorkerEval:
 
 
 if __name__ == '__main__':
-    save_img = False
+    save_img = True
     if save_img:
         if not os.path.exists(arg_eval.gifs_path):
             os.makedirs(arg_eval.gifs_path)
     device = torch.device('cuda')
     localNetwork = AttentionNet(arg_eval.embedding_dim).cuda()
-    checkpoint = torch.load(f'../{arg_eval.model_path}/checkpoint.pth')
+    checkpoint = torch.load(f'{arg_eval.model_path}/checkpoint.pth')
     localNetwork.load_state_dict(checkpoint['model'])
     worker = WorkerEval(0, localNetwork, 2, save_image=save_img)
     worker.run_episode(0)
