@@ -1,9 +1,19 @@
-import csv
+import sys
 import os
+
+# Get the parent directory
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Add the parent directory to sys.path
+sys.path.insert(0, parent_dir)
+
+
+import csv
+# import os
 import ray
 import torch
 import numpy as np
 import time
+
 from network import AttentionNet
 from runner import Runner
 from eval_worker import WorkerEval
@@ -17,7 +27,7 @@ def main(config=None):
     device = torch.device('cuda') if arg_eval.use_gpu_driver else torch.device('cpu')
     local_device = torch.device('cuda') if arg_eval.use_gpu_runner else torch.device('cpu')
     global_network = AttentionNet(arg_eval.embedding_dim).to(device)
-    checkpoint = torch.load(f'../{arg_eval.model_path}/checkpoint.pth')
+    checkpoint = torch.load(f'{arg_eval.model_path}/checkpoint.pth')
     global_network.load_state_dict(checkpoint['model'])
 
     print(f'Loading model: {arg_eval.run_name}...')

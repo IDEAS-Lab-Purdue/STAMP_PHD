@@ -14,6 +14,8 @@ from runner import Runner
 from arguments import arg
 
 
+
+
 class Logger:
     def __init__(self):
         self.net = None
